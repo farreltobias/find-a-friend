@@ -32,7 +32,7 @@
 - [x] Deve ser possível filtrar pets por suas características <!-- search-pets -->
 - [x] Deve ser possível visualizar detalhes de um pet para adoção <!-- get-pet-details -->
 - [x] Deve ser possível se cadastrar como uma ORG <!-- register -->
-- [ ] Deve ser possível realizar login como uma ORG <!-- authenticate -->
+- [x] Deve ser possível realizar login como uma ORG <!-- authenticate -->
 
 ### Regras de negócio
 
