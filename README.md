@@ -28,15 +28,15 @@
 ### Regras da aplicação
 
 - [x] Deve ser possível cadastrar um pet <!-- create-pet -->
-- [ ] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade <!-- list-pets -->
-- [ ] Deve ser possível filtrar pets por suas características <!-- list-pets -->
+- [x] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade <!-- search-pets -->
+- [x] Deve ser possível filtrar pets por suas características <!-- search-pets -->
 - [ ] Deve ser possível visualizar detalhes de um pet para adoção <!-- get-pet-details -->
 - [ ] Deve ser possível se cadastrar como uma ORG <!-- register -->
 - [ ] Deve ser possível realizar login como uma ORG <!-- authenticate -->
 
 ### Regras de negócio
 
-- [ ] Para listar os pets, obrigatoriamente precisamos informar a **cidade**
+- [x] Para listar os pets, obrigatoriamente precisamos informar a **cidade**
 - [ ] Uma ORG precisa ter um **endereço** e um número de **WhatsApp**
 - [x] Um pet deve estar ligado a uma ORG
 - [ ] O usuário que quer adotar, entrará em contato com a ORG via WhatsApp

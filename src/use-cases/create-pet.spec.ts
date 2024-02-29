@@ -1,24 +1,22 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { hash } from 'bcryptjs'
 
-import { PetsRepository } from '../repositories/pets-repository'
-import { OrgsRepository } from '../repositories/orgs-repository'
 import { CreatePetUseCase } from './create-pet'
 import { InMemoryPetsRepository } from '../repositories/in-memory/in-memory-pets-repository'
 import { InMemoryOrgsRepository } from '../repositories/in-memory/in-memory-orgs-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 describe('Create Pet Use Case', () => {
-  let petsRepository: PetsRepository
-  let orgsRepository: OrgsRepository
+  let orgsRepository: InMemoryOrgsRepository
+  let petsRepository: InMemoryPetsRepository
   let sut: CreatePetUseCase
 
   beforeEach(async () => {
-    petsRepository = new InMemoryPetsRepository()
     orgsRepository = new InMemoryOrgsRepository()
+    petsRepository = new InMemoryPetsRepository(orgsRepository)
     sut = new CreatePetUseCase(petsRepository, orgsRepository)
 
-    orgsRepository.create({
+    await orgsRepository.create({
       id: 'org-id',
       name: 'JavaScript Ong',
       email: 'johndoe@example.com',
