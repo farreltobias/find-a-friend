@@ -6,6 +6,16 @@ import { OrgsRepository } from '../orgs-repository'
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Org[] = []
 
+  async findByEmail(email: string) {
+    const org = this.items.find((item) => item.email === email)
+
+    if (!org) {
+      return null
+    }
+
+    return org
+  }
+
   async findById(id: string) {
     const org = this.items.find((item) => item.id === id)
 
