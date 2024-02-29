@@ -24,31 +24,61 @@ enum Size {
   LARGE
 }
 
-model Pet {
-  id          String  @id @default(uuid())
-  name        String
-  description String?
-  type        Type
-  age         Age
-  size        Size
+enum Energy {
+  VERY_LOW
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
 
-  organization    Organization @relation(fields: [organization_id], references: [id])
-  organization_id String
+enum Independence {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum Environment {
+  INDOOR
+  OUTDOOR
+  SPACIOUS
+}
+
+model Pet {
+  id           String       @id @default(uuid())
+  name         String
+  about        String?
+  age          Age
+  size         Size
+  energy       Energy
+  environment  Environment
+  type         Type
+  independence Independence
+
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
 
   @@map("pets")
 }
 
-model Organization {
-  id               String @id @default(uuid())
-  name             String
-  responsible_name String
-  email            String
-  password_hash    String
-  latitude         Float
-  longitude        Float
-  whatsApp         String
+model Org {
+  id            String @id @default(uuid())
+  name          String
+  author_name   String
+  email         String @unique
+  whatsApp      String
+  password_hash String
+
+  zip          String
+  state        String
+  city         String
+  neighborhood String
+  street       String
+
+  latitude  Float
+  longitude Float
 
   pets Pet[]
 
-  @@map("organizations")
+  @@map("orgs")
 }
