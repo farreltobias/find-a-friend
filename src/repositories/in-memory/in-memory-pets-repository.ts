@@ -9,6 +9,16 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   constructor(private orgsRepository: InMemoryOrgsRepository) {}
 
+  async findById(id: string) {
+    const pet = this.items.find((pet) => pet.id === id)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
+  }
+
   async search({ city, age, energy, independence, size, type }: SearchQuery) {
     const orgsByCity = this.orgsRepository.items.filter((org) => {
       return org.city === city

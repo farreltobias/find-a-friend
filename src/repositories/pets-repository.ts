@@ -22,4 +22,5 @@ export interface SearchQuery
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
   search(query: SearchQuery): Promise<Pet[]>
+  findById(id: string): Promise<Pet | null>
 }
