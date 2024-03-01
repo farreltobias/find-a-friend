@@ -8,7 +8,6 @@ interface SearchPetsUseCaseRequest {
   energy?: Energy
   size?: Size
   independence?: Independence
-  page?: number
 }
 
 interface SearchPetsUseCaseResponse {

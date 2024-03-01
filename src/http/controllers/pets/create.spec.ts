@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 import { createAndAuthenticateOrg } from '@/utils/create-and-authenticate-org'
 
-describe('Pet Details (e2e)', () => {
+describe('Create Pet (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -13,7 +13,7 @@ describe('Pet Details (e2e)', () => {
     await app.close()
   })
 
-  it('should be able to get pet and org details', async () => {
+  it('should be able to create a pet', async () => {
     const { token } = await createAndAuthenticateOrg(app)
 
     const response = await request(app.server)

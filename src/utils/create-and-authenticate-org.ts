@@ -1,16 +1,20 @@
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
 import request from 'supertest'
 
-export async function createAndAuthenticateOrg(app: FastifyInstance) {
+export async function createAndAuthenticateOrg(
+  app: FastifyInstance,
+  org?: Partial<Prisma.OrgUncheckedCreateInput>,
+) {
   await prisma.org.create({
     data: {
       name: 'JavaScript Ong',
-      email: 'johndoe@example.com',
+      email: org?.email || 'johndoe@example.com',
       author_name: 'John Doe',
       password_hash: await hash('password', 6),
-      city: 'Fake City',
+      city: org?.city || 'Fake City',
       neighborhood: 'Fake Neighborhood',
       state: 'Fake State',
       street: 'Fake Street',
@@ -21,10 +25,12 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
     },
   })
 
-  const authResponse = await request(app.server).post('/sessions').send({
-    email: 'johndoe@example.com',
-    password: 'password',
-  })
+  const authResponse = await request(app.server)
+    .post('/sessions')
+    .send({
+      email: org?.email || 'johndoe@example.com',
+      password: 'password',
+    })
 
   const { token } = authResponse.body
 
