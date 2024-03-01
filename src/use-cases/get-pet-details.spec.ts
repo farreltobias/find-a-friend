@@ -13,7 +13,7 @@ describe('Get Pet Details Use Case', () => {
   beforeEach(async () => {
     orgsRepository = new InMemoryOrgsRepository()
     petsRepository = new InMemoryPetsRepository(orgsRepository)
-    sut = new GetPetDetailsUseCase(petsRepository, orgsRepository)
+    sut = new GetPetDetailsUseCase(petsRepository)
 
     await orgsRepository.create({
       id: 'org-id',
@@ -50,37 +50,5 @@ describe('Get Pet Details Use Case', () => {
     })
 
     expect(pet.id).toEqual(petCreated.id)
-  })
-
-  it('should be able to get Ong details for adoption', async () => {
-    const petCreated = await petsRepository.create({
-      name: 'Rex',
-      about: 'A very good dog',
-      type: 'DOG',
-      age: 'CUB',
-      size: 'SMALL',
-      energy: 'VERY_LOW',
-      environment: 'INDOOR',
-      independence: 'LOW',
-      org_id: 'org-id',
-    })
-
-    const { organization } = await sut.execute({
-      petId: petCreated.id,
-    })
-
-    expect(organization).toEqual(
-      expect.objectContaining({
-        name: expect.any(String),
-        city: expect.any(String),
-        neighborhood: expect.any(String),
-        state: expect.any(String),
-        street: expect.any(String),
-        zip: expect.any(String),
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
-        whatsApp: expect.any(String),
-      }),
-    )
   })
 })
