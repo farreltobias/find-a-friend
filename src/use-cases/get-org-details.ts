@@ -1,23 +1,13 @@
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { OrgsRepository } from '../repositories/orgs-repository'
+import { Org } from '@prisma/client'
 
 interface GetOrgDetailsUseCaseRequest {
   orgId: string
 }
 
 interface GetOrgDetailsUseCaseResponse {
-  organization: {
-    id: string
-    name: string
-    city: string
-    neighborhood: string
-    state: string
-    street: string
-    zip: string
-    latitude: number
-    longitude: number
-    whatsApp: string
-  }
+  organization: Omit<Org, 'password_hash'>
 }
 
 export class GetOrgDetailsUseCase {
@@ -32,18 +22,8 @@ export class GetOrgDetailsUseCase {
       throw new ResourceNotFoundError()
     }
 
-    const organization = {
-      id: org.id,
-      name: org.name,
-      city: org.city,
-      neighborhood: org.neighborhood,
-      state: org.state,
-      street: org.street,
-      zip: org.zip,
-      latitude: org.latitude,
-      longitude: org.longitude,
-      whatsApp: org.whatsApp,
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password_hash, ...organization } = org
 
     return {
       organization,

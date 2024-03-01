@@ -35,18 +35,6 @@ describe('Get Org Details Use Case', () => {
     })
 
     expect(organization.id).toEqual(orgCreated.id)
-    expect(organization).toEqual(
-      expect.objectContaining({
-        name: expect.any(String),
-        city: expect.any(String),
-        neighborhood: expect.any(String),
-        state: expect.any(String),
-        street: expect.any(String),
-        zip: expect.any(String),
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
-        whatsApp: expect.any(String),
-      }),
-    )
+    expect(organization).not.toHaveProperty('password_hash')
   })
 })
