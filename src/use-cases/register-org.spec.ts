@@ -24,10 +24,10 @@ describe('Register Org Use Case', () => {
       neighborhood: 'Fake Neighborhood',
       state: 'Fake State',
       street: 'Fake Street',
-      zip: '12345678',
+      zip: '12345-678',
       latitude: 14.4095261,
       longitude: -51.31668,
-      whatsApp: '123456789',
+      whatsApp: '(43) 98765-4321',
     })
 
     expect(org.id).toEqual(expect.any(String))
@@ -43,10 +43,10 @@ describe('Register Org Use Case', () => {
       neighborhood: 'Fake Neighborhood',
       state: 'Fake State',
       street: 'Fake Street',
-      zip: '12345678',
+      zip: '12345-678',
       latitude: 14.4095261,
       longitude: -51.31668,
-      whatsApp: '123456789',
+      whatsApp: '(43) 98765-4321',
     })
 
     const isPasswordCorrectlyHashed = await compare(
@@ -67,10 +67,10 @@ describe('Register Org Use Case', () => {
       neighborhood: 'Fake Neighborhood',
       state: 'Fake State',
       street: 'Fake Street',
-      zip: '12345678',
+      zip: '12345-678',
       latitude: 14.4095261,
       longitude: -51.31668,
-      whatsApp: '123456789',
+      whatsApp: '(43) 98765-4321',
     })
 
     await expect(() =>
@@ -83,10 +83,10 @@ describe('Register Org Use Case', () => {
         neighborhood: 'Fake Neighborhood',
         state: 'Fake State',
         street: 'Fake Street',
-        zip: '12345678',
+        zip: '12345-678',
         latitude: 14.4095261,
         longitude: -51.31668,
-        whatsApp: '123456789',
+        whatsApp: '(43) 98765-4321',
       }),
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError)
   })
