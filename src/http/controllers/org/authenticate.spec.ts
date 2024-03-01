@@ -2,7 +2,7 @@ import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 
-describe('Register (e2e)', () => {
+describe('Authenticate (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -11,7 +11,7 @@ describe('Register (e2e)', () => {
     await app.close()
   })
 
-  it('should be able to register', async () => {
+  it('should be able to authenticate', async () => {
     await request(app.server).post('/orgs').send({
       name: 'JavaScript Ong',
       email: 'johndoe@example.com',
